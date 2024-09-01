@@ -1,4 +1,4 @@
-import {validarSuperficie, validarPosicionInicial, validarDireccion, avanzar} from "./auto.js";
+import {validarSuperficie, validarPosicionInicial, validarDireccion, avanzar, girarIzquierda} from "./auto.js";
 
 describe("Validaciones", () => {
     it("Deberia validar el tamaño de la superficie", () => {
@@ -17,4 +17,7 @@ it("Deberia validar avanzar la posicion del auto", () => {
     expect(avanzar("3,4", "N")).toEqual({x: 3, y: 5});
 });
 
+it("Deberia validar giro Izquierda", () => {
+    expect(girarIzquierda("O")).toEqual("N");
+});
 });

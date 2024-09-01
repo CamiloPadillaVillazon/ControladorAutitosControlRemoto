@@ -32,9 +32,29 @@ function avanzar(posicion, direccion){
             x -= 1;
             break;
         default:
-            print("Direccion Invalida");
-    }
-
+            console.error("Dirección Inválida");
+        }
     return {x, y};
 }
-export {validarSuperficie, validarPosicionInicial, validarDireccion, avanzar};
+
+function girarIzquierda(direccion){
+    let nuevaDireccion;
+    switch(direccion){
+        case "N":
+        nuevaDireccion = "E";
+            break;
+        case "S":
+            nuevaDireccion = "O";
+            break;
+        case "E":
+            nuevaDireccion = "S";
+            break;
+        case "O":
+            nuevaDireccion = "N";
+            break;
+        default:
+            console.error("Dirección Inválida");
+    }
+    return nuevaDireccion;
+}
+export {validarSuperficie, validarPosicionInicial, validarDireccion, avanzar, girarIzquierda};
