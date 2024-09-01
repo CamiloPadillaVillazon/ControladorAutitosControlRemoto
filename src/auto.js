@@ -57,4 +57,27 @@ function girarIzquierda(direccion){
     }
     return nuevaDireccion;
 }
-export {validarSuperficie, validarPosicionInicial, validarDireccion, avanzar, girarIzquierda};
+
+function girarDerecha(direccion){
+    let nuevaDireccion;
+    switch(direccion){
+        case "N":
+        nuevaDireccion = "O";
+            break;
+        case "S":
+            nuevaDireccion = "E";
+            break;
+        case "E":
+            nuevaDireccion = "N";
+            break;
+        case "O":
+            nuevaDireccion = "S";
+            break;
+        default:
+            console.error("Dirección Inválida");
+    }
+    return nuevaDireccion;
+
+}
+
+export {validarSuperficie, validarPosicionInicial, validarDireccion, avanzar, girarIzquierda, girarDerecha};
