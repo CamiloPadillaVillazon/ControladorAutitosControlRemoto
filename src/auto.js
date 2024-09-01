@@ -34,10 +34,31 @@ function avanzar(posicion, direccion){
         default:
             console.error("Dirección Inválida");
         }
-    return {x, y};
+    return `${x},${y}`;
 }
 
 function girarIzquierda(direccion){
+    let nuevaDireccion;
+    switch(direccion){
+        case "N":
+        nuevaDireccion = "O";
+            break;
+        case "S":
+            nuevaDireccion = "E";
+            break;
+        case "E":
+            nuevaDireccion = "N";
+            break;
+        case "O":
+            nuevaDireccion = "S";
+            break;
+        default:
+            console.error("Dirección Inválida");
+    }
+    return nuevaDireccion;
+}
+
+function girarDerecha(direccion){
     let nuevaDireccion;
     switch(direccion){
         case "N":
@@ -58,26 +79,33 @@ function girarIzquierda(direccion){
     return nuevaDireccion;
 }
 
-function girarDerecha(direccion){
-    let nuevaDireccion;
-    switch(direccion){
-        case "N":
-        nuevaDireccion = "O";
-            break;
-        case "S":
-            nuevaDireccion = "E";
-            break;
-        case "E":
-            nuevaDireccion = "N";
-            break;
-        case "O":
-            nuevaDireccion = "S";
-            break;
-        default:
-            console.error("Dirección Inválida");
-    }
-    return nuevaDireccion;
+function cambioPosicion(posInicial, dirInicial, comando){
+    let posicion = posInicial;
+    let direccion = dirInicial;
 
+    for(let i=0; i<comando.length; i++)
+    {
+        const letra = comando[i];
+        if(letra === "A")
+        {
+            posicion = avanzar(posicion, direccion);
+        } else if(letra === "I")
+        {
+            direccion = girarIzquierda(direccion);
+        }else if (letra === "D")
+        {
+            direccion = girarDerecha(direccion);
+        }
+    }
+    let [x, y] = posicion.split(',').map(Number);
+    
+    return {x, y, direccion};
 }
 
-export {validarSuperficie, validarPosicionInicial, validarDireccion, avanzar, girarIzquierda, girarDerecha};
+
+
+
+
+
+export {validarSuperficie, validarPosicionInicial, validarDireccion, avanzar, girarIzquierda, girarDerecha, cambioPosicion };
+
