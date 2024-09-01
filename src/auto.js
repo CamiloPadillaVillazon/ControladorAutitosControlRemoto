@@ -15,4 +15,26 @@ function validarDireccion(direccion) {
     }
 }
 
-export {validarSuperficie, validarPosicionInicial, validarDireccion};
+function avanzar(posicion, direccion){
+    let [x, y] = posicion.split(',').map(Number);
+
+    switch(direccion){
+        case "N":
+            y += 1;
+            break;
+        case "S":
+            y -= 1;
+            break;
+        case "E":
+            x += 1;
+            break;
+        case "O":
+            x -= 1;
+            break;
+        default:
+            print("Direccion Invalida");
+    }
+
+    return {x, y};
+}
+export {validarSuperficie, validarPosicionInicial, validarDireccion, avanzar};
