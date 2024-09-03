@@ -15,27 +15,40 @@ function validarDireccion(direccion) {
     }
 }
 
-function avanzar(posicion, direccion){
+function avanzar(posicion, direccion, xMax, yMax) {
     let [x, y] = posicion.split(',').map(Number);
 
-    switch(direccion){
+    switch(direccion) {
         case "N":
+            if(y + 1 > yMax) {
+                return "No se puede avanzar";
+            }
             y += 1;
             break;
         case "S":
+            if(y - 1 < 0) {
+                return "No se puede avanzar";
+            }
             y -= 1;
             break;
         case "E":
+            if(x + 1 > xMax) {
+                return "No se puede avanzar";
+            }
             x += 1;
             break;
         case "O":
+            if(x - 1 < 0) {
+                return "No se puede avanzar";
+            }
             x -= 1;
             break;
         default:
             console.error("Dirección Inválida");
-        }
+    }
     return `${x},${y}`;
 }
+
 
 function girarIzquierda(direccion){
     let nuevaDireccion;
@@ -79,21 +92,21 @@ function girarDerecha(direccion){
     return nuevaDireccion;
 }
 
-function cambioPosicion(posInicial, dirInicial, comando){
+function cambioPosicion(posInicial, dirInicial, comando, xMax, yMax) {
     let posicion = posInicial;
     let direccion = dirInicial;
 
-    for(let i=0; i<comando.length; i++)
-    {
+    for(let i = 0; i < comando.length; i++) {
         const letra = comando[i];
-        if(letra === "A")
-        {
-            posicion = avanzar(posicion, direccion);
-        } else if(letra === "I")
-        {
+        if (letra === "A") {
+            const nuevaPosicion = avanzar(posicion, direccion, xMax, yMax);
+            if (nuevaPosicion === "No se puede avanzar") {
+                return { error: `No se puede avanzar en la dirección ${direccion} desde la posición ${posicion}` };
+            }
+            posicion = nuevaPosicion;
+        } else if (letra === "I") {
             direccion = girarIzquierda(direccion);
-        }else if (letra === "D")
-        {
+        } else if (letra === "D") {
             direccion = girarDerecha(direccion);
         }
     }
@@ -101,6 +114,7 @@ function cambioPosicion(posInicial, dirInicial, comando){
     
     return {x, y, direccion};
 }
+
 
 
 export {cambioPosicion};
