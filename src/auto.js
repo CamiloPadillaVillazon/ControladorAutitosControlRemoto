@@ -103,5 +103,5 @@ function cambioPosicion(posInicial, dirInicial, comando){
 }
 
 
-export {cambioPosicion};
+export {validarSuperficie, validarPosicionInicial, validarDireccion, avanzar, girarIzquierda, girarDerecha, cambioPosicion};
 
